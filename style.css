@@ -1,0 +1,26 @@
+.jumbotron {
+  background-image: url('img/jumbotron.png');
+  /* agar background tidak bergerak ketika di scroll */
+  background-attachment: fixed;
+  /* agar background dapat menutupi seluruh jumbotron */
+  background-size: cover;
+}
+
+.jumbotron img {
+  border: 2px solid white;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+
+.jumbotron h1, .jumbotron p {
+  font-weight: 500;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+
+section {
+  min-height: 600px;
+}
+
+footer p {
+  color: #b8b8b8;
+  font-size: 0.9em;
+}
