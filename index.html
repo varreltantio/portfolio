@@ -1,228 +1,493 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Modern | Varrel Tantio</title>
+    <meta
+      name="description"
+      content="Portofolio modern berbasis HTML murni dengan desain responsif, animasi halus, dan section lengkap."
+    />
+    <style>
+      :root {
+        --bg: #090b16;
+        --panel: rgba(18, 23, 45, 0.72);
+        --panel-border: rgba(255, 255, 255, 0.14);
+        --text: #e6ebff;
+        --muted: #98a2c6;
+        --primary: #6f8cff;
+        --accent: #28d8b2;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      }
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    <link rel="stylesheet" href="style.css">
+      html {
+        scroll-behavior: smooth;
+      }
 
-    <title>Portfolio Website</title>
+      body {
+        font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+        color: var(--text);
+        background: radial-gradient(circle at 20% -10%, #233b98 0%, transparent 45%),
+          radial-gradient(circle at 80% 0%, #007f6f 0%, transparent 30%),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 92%);
+        margin-inline: auto;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(9, 11, 22, 0.72);
+      }
+
+      .nav {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .brand span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.2rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+      }
+
+      section {
+        padding: 84px 0;
+      }
+
+      .hero {
+        min-height: calc(100vh - 76px);
+        display: grid;
+        align-items: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 3rem;
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 2px;
+        background: currentColor;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        color: var(--muted);
+        max-width: 60ch;
+        margin-bottom: 2rem;
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        border-radius: 999px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: 0.25s ease;
+      }
+
+      .btn.primary {
+        background: linear-gradient(120deg, var(--primary), #8f63ff);
+        box-shadow: 0 12px 28px rgba(111, 140, 255, 0.35);
+      }
+
+      .btn.secondary {
+        border-color: rgba(255, 255, 255, 0.2);
+        color: var(--muted);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero-card {
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        border-radius: 26px;
+        padding: 1.3rem;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card img {
+        width: 100%;
+        border-radius: 18px;
+        height: 350px;
+        object-fit: cover;
+      }
+
+      .stats {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 0.9rem;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.2rem;
+      }
+
+      .title {
+        font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+
+      .about-wrap,
+      .contact-wrap {
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        border-radius: 24px;
+        padding: 1.6rem;
+      }
+
+      .about-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 1rem;
+      }
+
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .portfolio-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .project {
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .project img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .project-body {
+        padding: 1rem;
+      }
+
+      .project h3 {
+        margin-bottom: 6px;
+      }
+
+      .project p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .contact-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-list {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .contact-list li {
+        padding: 12px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      form {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        color: var(--text);
+        padding: 12px;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 1.6rem 0 2.2rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .about-grid,
+        .contact-grid,
+        .portfolio-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-grid,
+        .about-grid,
+        .contact-grid,
+        .portfolio-grid,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        section {
+          padding: 68px 0;
+        }
+      }
+    </style>
   </head>
-  <body class="mt-5" id="home">
-
-    <!-- navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-      <div class="container">
-        <a class="navbar-brand page-scroll" href="#home">Varrel Tantio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active page-scroll" href="#home">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link page-scroll" href="#about">About</a>
-            <a class="nav-item nav-link page-scroll" href="#portfolio">Portfolio</a>
-            <a class="nav-item nav-link page-scroll" href="#contact">Contact</a>
-          </div>
-        </div>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <a href="#home" class="brand">Varrel<span>Studio</span></a>
+        <nav class="nav-links">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">Tentang</a>
+          <a href="#portfolio">Proyek</a>
+          <a href="#contact">Kontak</a>
+        </nav>
       </div>
-    </nav>
-    <!-- akhir navbar -->
+    </header>
 
-    <!-- jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container text-center">
-        <img src="img/profile.png" class="rounded-circle" width="25%">
-        <h1 class="display-4">Varrel Tantio</h1>
-        <p class="lead">Welcome To My Portfolio Website</p>
+    <main id="home" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Web Developer</span>
+          <h1>Membangun produk digital yang modern, cepat, dan berkesan.</h1>
+          <p>
+            Halo, saya Varrel Tantio. Saya fokus pada pengembangan website modern dengan desain bersih,
+            performa optimal, dan pengalaman pengguna yang nyaman di semua perangkat.
+          </p>
+          <div class="hero-cta">
+            <a href="#portfolio" class="btn primary">Lihat Proyek</a>
+            <a href="#contact" class="btn secondary">Hubungi Saya</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <img src="img/profile.png" alt="Foto Profil Varrel" />
+          <div class="stats">
+            <div class="stat"><strong>40+</strong>Proyek</div>
+            <div class="stat"><strong>3+</strong>Tahun</div>
+            <div class="stat"><strong>25+</strong>Klien</div>
+          </div>
+        </aside>
       </div>
-    </div>
-    <!-- akhir jumbotron -->
+    </main>
 
-    <!-- about -->
-    <section class="about pt-4" id="about">
+    <section id="about">
       <div class="container">
-        <div class="row mb-4">
-          <div class="col-md text-center">
-            <h2>About</h2>
-            <hr width="250px" class="border border-primary">
+        <h2 class="title">Tentang Saya</h2>
+        <p class="subtitle">Perpaduan desain minimalis dan teknologi web modern untuk hasil maksimal.</p>
+        <div class="about-wrap about-grid">
+          <div>
+            <p>
+              Saya berpengalaman membuat landing page, company profile, hingga dashboard web app.
+              Pendekatan saya adalah memahami kebutuhan bisnis terlebih dahulu lalu menerjemahkannya
+              menjadi antarmuka yang estetik sekaligus fungsional.
+            </p>
           </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="col-md-5 text-justify">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae hic asperiores laborum deleniti error, natus quasi quos! Expedita voluptas aliquid laborum pariatur, temporibus tempore architecto, officia consequuntur praesentium similique, harum iure nam. Quibusdam itaque facilis nobis dolores omnis dicta illum amet porro dolorem, quia iure pariatur minus veritatis maxime voluptatem.</p>
-          </div>
-          <div class="col-md-5 text-justify">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id debitis est, ex, adipisci libero odio ducimus cumque ad, consectetur dolores repudiandae in dolorem eius deleniti, itaque eligendi autem facilis illo non voluptatum mollitia dolor laborum architecto maxime. Aliquid iure, pariatur incidunt labore sunt veniam adipisci consectetur cupiditate dignissimos! Tempore, est.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- akhir about -->
-
-    <!-- portfolio -->
-    <section class="portfolio bg-light pb-4" id="portfolio">
-      <div class="container">
-        <div class="row mb-4 pt-4">
-          <div class="col text-center">
-            <h2>Portfolio</h2>
-            <hr width="250px" class="border border-primary">
-          </div>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col-md">
-            <div class="card">
-              <img src="img/card/gambar1.png" class="card-img-top">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <img src="img/card/gambar2.png" class="card-img-top">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <img src="img/card/gambar3.png" class="card-img-top">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col-md">
-            <div class="card">
-              <img src="img/card/gambar4.png" class="card-img-top">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <img src="img/card/gambar5.png" class="card-img-top">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <img src="img/card/gambar6.png" class="card-img-top">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
+          <div>
+            <p>
+              Saya terbiasa bekerja dengan tim lintas divisi, menjaga kualitas kode, dan memastikan setiap
+              project siap deploy dengan standar performa yang baik.
+            </p>
+            <div class="skills">
+              <span class="chip">HTML5</span>
+              <span class="chip">CSS3</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">UI/UX</span>
+              <span class="chip">Responsive Design</span>
+              <span class="chip">SEO Basic</span>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- akhir portfolio -->
 
-    <!-- contact -->
-    <section class="contact mb-5" id="contact">
+    <section id="portfolio">
       <div class="container">
-        <div class="row pt-4 mb-4">
-          <div class="col-md text-center">
-            <h2>Contact</h2>
-            <hr width="250px" class="border border-primary">
-          </div>
-        </div>
+        <h2 class="title">Proyek Pilihan</h2>
+        <p class="subtitle">Berikut beberapa karya terbaru dengan gaya visual modern.</p>
 
-        <div class="row justify-content-center">
-          <div class="col-md-4">
-            <div class="card text-white bg-primary mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Contact Us</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, distinctio.</p>
-              </div>
+        <div class="portfolio-grid">
+          <article class="project">
+            <img src="img/card/gambar1.png" alt="Project E-Commerce" />
+            <div class="project-body">
+              <h3>E-Commerce Redesign</h3>
+              <p>Revamp UI toko online agar lebih modern, meningkatkan konversi checkout hingga 22%.</p>
             </div>
+          </article>
 
-            <ul class="list-group">
-              <li class="list-group-item"><h1>Location</h1></li>
-              <li class="list-group-item">My Office</li>
-              <li class="list-group-item">Jl.Dr Soebandi Gg 6 No. 12, Jember</li>
-              <li class="list-group-item">East Java, Indonesia</li>
-            </ul>
-          </div>
+          <article class="project">
+            <img src="img/card/gambar2.png" alt="Project SaaS" />
+            <div class="project-body">
+              <h3>SaaS Landing Page</h3>
+              <p>Landing page B2B dengan struktur konten kuat, SEO-ready, dan kecepatan tinggi.</p>
+            </div>
+          </article>
 
-          <div class="col-md-6">
-            <from>
-              <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" class="form-control" id="nama" placeholder="Masukan Nama">
-              </div>
+          <article class="project">
+            <img src="img/card/gambar3.png" alt="Project Dashboard" />
+            <div class="project-body">
+              <h3>Analytics Dashboard</h3>
+              <p>Dashboard interaktif untuk monitoring performa campaign dan KPI bisnis.</p>
+            </div>
+          </article>
 
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Masukan Email">
-              </div>
+          <article class="project">
+            <img src="img/card/gambar4.png" alt="Project Company Profile" />
+            <div class="project-body">
+              <h3>Company Profile</h3>
+              <p>Website profil perusahaan dengan storytelling brand dan animasi ringan.</p>
+            </div>
+          </article>
 
-              <div class="form-group">
-                <label for="tel">No. Telepon</label>
-                <input type="tel" class="form-control" id="tel" placeholder="Masukan No. Telepon">
-              </div>
+          <article class="project">
+            <img src="img/card/gambar5.png" alt="Project Event" />
+            <div class="project-body">
+              <h3>Event Microsite</h3>
+              <p>Microsite event dengan registrasi online, countdown, dan tampilan mobile-first.</p>
+            </div>
+          </article>
 
-              <div class="form-group">
-                <select class="form-control">
-                  <option>-- Pilih Kategori --</option>
-                  <option>Web Design</option>
-                  <option>Web Development</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="pesan">Pesan</label>
-                <textarea class="form-control" placeholder="Masukan Pesan"></textarea>
-              </div>
-
-              <button type="button" class="btn btn-primary">Kirim Pesan</button>
-            </from>
-          </div>
+          <article class="project">
+            <img src="img/card/gambar6.png" alt="Project Personal Brand" />
+            <div class="project-body">
+              <h3>Personal Branding</h3>
+              <p>Website personal modern untuk kreator dengan fokus pada konten dan kredibilitas.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
-    <!-- akhir contact -->
 
-    <!-- footer -->
-    <footer class="bg-dark">
+    <section id="contact">
       <div class="container">
-        <div class="row pt-4">
-          <div class="col text-center">
-            <p>&copy; Copyright 2019 | Built With <a href="">Varrel Tantio</a></p>
-          </div>
+        <h2 class="title">Kontak</h2>
+        <p class="subtitle">Siap kolaborasi? Kirim pesan singkat, saya akan balas secepatnya.</p>
+
+        <div class="contact-wrap contact-grid">
+          <ul class="contact-list">
+            <li><strong>Email:</strong> hello@varrelstudio.com</li>
+            <li><strong>WhatsApp:</strong> +62 812-3456-7890</li>
+            <li><strong>Lokasi:</strong> Jember, Jawa Timur, Indonesia</li>
+          </ul>
+
+          <form>
+            <input type="text" placeholder="Nama lengkap" required />
+            <input type="email" placeholder="Email aktif" required />
+            <textarea placeholder="Tulis kebutuhan project kamu..."></textarea>
+            <button type="submit" class="btn primary">Kirim Pesan</button>
+          </form>
         </div>
       </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Varrel Studio. Dibuat dengan HTML + CSS modern.</p>
     </footer>
-    <!-- akhir footer -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/jquery.easing.1.3.js">
-
-    </script>
-    <script src="js/script.js"></script>
   </body>
 </html>
